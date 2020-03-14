@@ -204,6 +204,10 @@ o = s:option(Value, "tunnel_forward", translate("DNS Server IP and Port"))
 o.default = "8.8.4.4:53"
 o.rmempty = false
 
+o = s:option(Value, "mtu_value", "MTU")
+o.default = "1492"
+o.rmempty = false
+
 -- [[ SOCKS5 Proxy ]]--
 s = m:section(TypedSection, "socks5_proxy", translate("SOCKS5 Proxy"))
 s.anonymous = true

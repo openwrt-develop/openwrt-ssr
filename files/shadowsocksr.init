@@ -69,6 +69,10 @@ gen_config_file() {
          else
          fastopen="false";
          fi
+        mtuval=$(uci_get_by_type global mtu_value)
+        if [ -z $mtuval ] ;then
+        mtuval="1492"
+        fi
 	cat <<-EOF >$config_file
 		{
 		    
@@ -83,7 +87,8 @@ gen_config_file() {
 		    "protocol_param": "$(uci_get_by_name $1 protocol_param)",
 		    "obfs": "$(uci_get_by_name $1 obfs)",
 		    "obfs_param": "$(uci_get_by_name $1 obfs_param)",
-		    "fast_open": $fastopen
+		    "fast_open": $fastopen ,
+		    "mtu": $mtuval
 		}
 EOF
 }
@@ -301,7 +306,11 @@ gen_service_file() {
 	fastopen="true";
 	else
 	fastopen="false";
-	fi       
+	fi
+	mtuval=$(uci_get_by_type global mtu_value)
+	if [ -z $mtuval ] ;then
+	mtuval="1492"
+	fi
 	cat <<-EOF >$2
 		{
 		    "server": "$(uci_get_by_name $1 server)",
@@ -313,7 +322,8 @@ gen_service_file() {
 		    "protocol_param": "$(uci_get_by_name $1 protocol_param)",
 		    "obfs": "$(uci_get_by_name $1 obfs)",
 		    "obfs_param": "$(uci_get_by_name $1 obfs_param)",
-		    "fast_open": $fastopen
+		    "fast_open": $fastopen,
+		    "mtu": $mtuval
 		}
 EOF
 }
