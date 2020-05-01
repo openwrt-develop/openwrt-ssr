@@ -1,0 +1,20 @@
+{
+  "luci-app-shadowsocksr": {
+    "description": "Grant access to ShadowsocksR",
+    "read": {
+      "file": {
+        "/etc/china_ssr.txt": [ "read" ],
+        "/etc/dnsmasq.ssr/*": [ "read" ]
+      },
+      "uci": [ "dhcp", "firewall", "shadowsocksr" ]
+    },
+    "write": {
+      "file": {
+        "/etc/china_ssr.txt": [ "write" ],
+        "/etc/dnsmasq.ssr/*": [ "write" ],
+        "/usr/bin/ssr-*": [ "exec" ]
+      },
+      "uci": [ "dhcp", "firewall", "shadowsocksr" ]
+    }
+  }
+}
