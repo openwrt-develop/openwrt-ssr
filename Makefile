@@ -10,7 +10,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openwrt-ssr
 PKG_VERSION:=3.0.8
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/shadowsocksrr/shadowsocksr-libev.git
@@ -38,7 +38,7 @@ define Package/openwrt-ssr/Default
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
 	TITLE:=shadowsocksR-libev LuCI interface
-	URL:=https://github.com/nobk/openwrt-ssr
+	URL:=https://github.com/lededev/openwrt-ssr
 	VARIANT:=$(1)
 	DEPENDS:=$(3)	
 	PKGARCH:=all
@@ -152,6 +152,8 @@ define Install/common
 	$(INSTALL_DATA) ./files/shadowsocksr.config $(1)/etc/config/shadowsocksr
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/shadowsocksr.init $(1)/etc/init.d/shadowsocksr
+	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
+	$(INSTALL_DATA) ./files/root/usr/share/rpcd/acl.d/luci-app-shadowsocksr.json $(1)/usr/share/rpcd/acl.d/luci-app-shadowsocksr.json
 endef
 
 define Package/openwrt-ssr/install

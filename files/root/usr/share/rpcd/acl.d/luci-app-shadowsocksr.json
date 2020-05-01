@@ -4,7 +4,8 @@
     "read": {
       "file": {
         "/etc/china_ssr.txt": [ "read" ],
-        "/etc/dnsmasq.ssr/*": [ "read" ]
+        "/etc/dnsmasq.ssr/*": [ "read" ],
+	"/var/etc/shadowsocksr.include": [ "read" ]
       },
       "uci": [ "dhcp", "firewall", "shadowsocksr" ]
     },
@@ -12,6 +13,7 @@
       "file": {
         "/etc/china_ssr.txt": [ "write" ],
         "/etc/dnsmasq.ssr/*": [ "write" ],
+	"/var/etc/shadowsocksr.include": [ "write" ],
         "/usr/bin/ssr-*": [ "exec" ]
       },
       "uci": [ "dhcp", "firewall", "shadowsocksr" ]
