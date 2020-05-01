@@ -26,6 +26,8 @@ ShadowsocksR-libev for OpenWrt
 
 客户端兼容运行SS或SSR的服务器，使用SS服务器时，传输协议需设置为origin，混淆插件需设置为plain
 
+支持 ssr:// url格式导入和导出服务器配置信息
+
 运行模式介绍
 ---
 【IP路由模式】
@@ -149,6 +151,7 @@ GFW版本支持IP路由模式和GFW列表模式，需卸载原有的dnsmasq，�
    password       | 字符串     | 服务端设置的密码
    encrypt_method | 字符串     | 加密方式, [详情参考][2]
    protocol       | 字符串     | 传输协议，默认"origin"[详情参考][3]
+   protocol_param | 字符串     | 传输协议插件参数(可选)
    obfs           | 字符串     | 混淆插件，默认"plain" [详情参考][3]
    obfs_param     | 字符串     | 混淆插件参数 [详情参考][3]
    fast_open      | 布尔型     | TCP快速打开 [详情参考][3]

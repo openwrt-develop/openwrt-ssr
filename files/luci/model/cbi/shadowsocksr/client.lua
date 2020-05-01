@@ -23,12 +23,12 @@ end
 m = Map(shadowsocksr, translate("ShadowSocksR Client"))
 
 local server_table = {}
-local arp_table = luci.sys.net.arptable() or {}
 local encrypt_methods = {
+	"none",
 	"table",
 	"rc4",
-	"rc4-md5",
 	"rc4-md5-6",
+	"rc4-md5",
 	"aes-128-cfb",
 	"aes-192-cfb",
 	"aes-256-cfb",
@@ -51,20 +51,23 @@ local encrypt_methods = {
 
 local protocol = {
 	"origin",
-	"verify_simple",
-	"verify_sha1",		
-	"auth_sha1",
-	"auth_sha1_v2",
+	"verify_deflate",		
 	"auth_sha1_v4",
 	"auth_aes128_sha1",
 	"auth_aes128_md5",
+	"auth_chain_a",
+	"auth_chain_b",
+	"auth_chain_c",
+	"auth_chain_d",
+	"auth_chain_e",
+	"auth_chain_f",
 }
 
 obfs = {
 	"plain",
 	"http_simple",
 	"http_post",
-	"tls_simple",	
+	"random_head",	
 	"tls1.2_ticket_auth",
 }
 
@@ -201,6 +204,10 @@ o = s:option(Value, "tunnel_forward", translate("DNS Server IP and Port"))
 o.default = "8.8.4.4:53"
 o.rmempty = false
 
+o = s:option(Value, "mtu_value", "MTU")
+o.default = "1492"
+o.rmempty = false
+
 -- [[ SOCKS5 Proxy ]]--
 s = m:section(TypedSection, "socks5_proxy", translate("SOCKS5 Proxy"))
 s.anonymous = true
@@ -253,6 +260,9 @@ o.rmempty = false
 
 o = s:taboption("lan_ac", DynamicList, "lan_ac_ips", translate("LAN Host List"))
 o.datatype = "ipaddr"
-for _, v in ipairs(arp_table) do o:value(v["IP address"]) end
-
+luci.ip.neighbors({ family = 4 }, function(entry)
+       if entry.reachable then
+               o:value(entry.dest:string())
+       end
+end)
 return m

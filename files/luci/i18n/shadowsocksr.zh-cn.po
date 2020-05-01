@@ -61,6 +61,9 @@ msgstr "加密方式"
 msgid "Protocol"
 msgstr "传输协议"
 
+msgid "Protocol param(optional)"
+msgstr "传输协议参数（可选）"
+
 msgid "Obfs"
 msgstr "混淆插件"
 
@@ -322,3 +325,27 @@ msgstr "使用DNS隧道"
 
 msgid "Use Pdnsd"
 msgstr "使用Pdnsd"
+
+msgid "Import SSR"
+msgstr "导入ssr配置信息"
+
+msgid "Export SSR"
+msgstr "导出ssr配置信息"
+
+msgid "Import SSR successfully."
+msgstr "成功导入SSR。"
+
+msgid "Invalid SSR format."
+msgstr "无效的SSR格式。"
+
+msgid "User cancelled."
+msgstr "用户已取消。"
+
+msgid "Paste ssr url here"
+msgstr "在此处粘贴ssr://网址"
+
+msgid "Unable to copy SSR to clipboard."
+msgstr "无法复制SSR网址到剪贴板。"
+
+msgid "Copy SSR to clipboard successfully."
+msgstr "成功复制SSR网址到剪贴板。"
